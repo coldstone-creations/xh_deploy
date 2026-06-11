@@ -33,12 +33,12 @@ target_include_directories(motors
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
 )
-target_link_libraries(motors PUBLIC ${PUBLIC_DEPENDENCIES} dm_motors evo_motors motors_protocol)
+target_link_libraries(motors PUBLIC ${PUBLIC_DEPENDENCIES} dm_motors motors_protocol)
 
 install(DIRECTORY include/ DESTINATION include)
 install(DIRECTORY src/ DESTINATION include FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp")
 
-install(TARGETS motors dm_motors evo_motors motors_protocol
+install(TARGETS motors dm_motors motors_protocol
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
   RUNTIME DESTINATION bin
@@ -67,7 +67,7 @@ install(TARGETS motors_py
 )
 
 
-ament_export_libraries(motors dm_motors evo_motors motors_protocol)
+ament_export_libraries(motors dm_motors motors_protocol)
 ament_export_include_directories(include)
 
 ament_package()
