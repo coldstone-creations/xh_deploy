@@ -1,7 +1,5 @@
 #include "bsp_crc.h"
 
-#include <cstddef>
-
 namespace dmbot_imu
 {
 
