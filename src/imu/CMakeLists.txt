@@ -32,12 +32,12 @@ target_include_directories(imu
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
 )
 
-target_link_libraries(imu PUBLIC ${PUBLIC_DEPENDENCIES} hipnuc_imu dm_imu imu_protocol)
+target_link_libraries(imu PUBLIC ${PUBLIC_DEPENDENCIES} dm_imu imu_protocol)
 
 install(DIRECTORY include/ DESTINATION include)
 install(DIRECTORY src/ DESTINATION include FILES_MATCHING PATTERN "*.h")
 
-install(TARGETS imu hipnuc_imu dm_imu imu_protocol
+install(TARGETS imu dm_imu imu_protocol
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
   RUNTIME DESTINATION bin
@@ -60,7 +60,7 @@ install(TARGETS imu_py
   RUNTIME DESTINATION ${PYTHON_INSTALL_DIR}
 )
 
-ament_export_libraries(imu hipnuc_imu dm_imu imu_protocol)
+ament_export_libraries(imu dm_imu imu_protocol)
 ament_export_include_directories(include)
 
 ament_package()
