@@ -39,7 +39,7 @@ public:
     /// @return true if all joints are within limits; false if shutdown was
     ///         triggered (the caller should stop the current iteration).
     bool check_joint_limits(const std::vector<float>& joint_pos,
-                            const std::vector<int>&   usd2urdf) const
+                            const std::vector<long int>&   usd2urdf) const
     {
         (void)usd2urdf;  // kept for future use (e.g. remapping)
         const size_t joint_count = joint_limits_->size() / 2;

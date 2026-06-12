@@ -89,7 +89,7 @@ inline StateName StateMachine::Run(const RobotObs& obs, const UserCommand& cmd) 
             if (it != states_.end()) {
                 current_state_->OnExit();
                 std::cout << "[SM] " << current_state_name_str()
-                          << " → " << it->second->name()
+                          << " → " << StateNameToStr(it->second->name())
                           << " (forced)\n";
                 current_state_      = it->second;
                 current_state_name_ = target;
@@ -109,7 +109,7 @@ inline StateName StateMachine::Run(const RobotObs& obs, const UserCommand& cmd) 
         if (it != states_.end()) {
             current_state_->OnExit();
             std::cout << "[SM] " << current_state_name_str()
-                      << " → " << it->second->name() << "\n";
+                      << " → " << StateNameToStr(it->second->name()) << "\n";
             current_state_      = it->second;
             current_state_name_ = next;
             current_state_->OnEnter();

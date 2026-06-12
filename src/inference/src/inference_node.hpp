@@ -257,6 +257,7 @@ class InferenceNode : public rclcpp::Node {
     void load_config();
     void initialize_runtime_state();
     void reset_runtime_state();
+    void step_motion_frame();
 
     bool has_obs_source(const std::string& source_name) const;
     static ObsStackOrder parse_obs_stack_order(const std::string& name);

@@ -23,6 +23,16 @@ enum class StateName {
     kJointDamping,   // Safety fallback — zero torque, damping only
 };
 
+inline const char* StateNameToStr(StateName name) {
+    switch (name) {
+        case StateName::kIdle:         return "Idle";
+        case StateName::kStandUp:      return "StandUp";
+        case StateName::kRLControl:    return "RLControl";
+        case StateName::kJointDamping: return "JointDamping";
+        default:                       return "Unknown";
+    }
+}
+
 // ============================================================================
 // RobotObs — sensor snapshot passed into State::Run()
 // ============================================================================
@@ -61,7 +71,7 @@ struct StateContext {
     // Config
     int                   joint_num        = 0;
     const std::vector<double>* joint_default_angle = nullptr;
-    const std::vector<int>*    usd2urdf           = nullptr;
+    const std::vector<long int>*    usd2urdf           = nullptr;
     float action_scale   = 1.0f;
     float clip_actions   = 100.0f;
 

@@ -192,29 +192,29 @@ void InferenceNode::inference() {
             // 1. Gather sensor snapshot
             build_obs(obs);
 
-            // 2. Gather user intent
-            cmd = build_cmd();
+            // // 2. Gather user intent
+            // cmd = build_cmd();
 
-            // 3. Run state machine — the active state does the work
-            std::unique_lock<std::mutex> mode_lock(mode_mutex_);
-            state_machine_.Run(obs, cmd);
+            // // 3. Run state machine — the active state does the work
+            // std::unique_lock<std::mutex> mode_lock(mode_mutex_);
+            // state_machine_.Run(obs, cmd);
 
-            // 4. Safety: ask the current state if it should be forced to JointDamping
-            {
-                auto st = state_machine_.get_state(state_machine_.current_state());
-                if (st && st->LoseControlJudge(obs)) {
-                    RCLCPP_WARN(this->get_logger(), "LoseControlJudge triggered → JointDamping");
-                    state_machine_.ForceTransition(StateName::kJointDamping);
-                }
-            }
+            // // 4. Safety: ask the current state if it should be forced to JointDamping
+            // {
+            //     auto st = state_machine_.get_state(state_machine_.current_state());
+            //     if (st && st->LoseControlJudge(obs)) {
+            //         RCLCPP_WARN(this->get_logger(), "LoseControlJudge triggered → JointDamping");
+            //         state_machine_.ForceTransition(StateName::kJointDamping);
+            //     }
+            // }
 
             // 5. Publish (always — regardless of state)
             publish_imu();
-            publish_joint_states();
-            {
-                std::unique_lock<std::mutex> lock(act_mutex_);
-                publish_action();
-            }
+            // publish_joint_states();
+            // {
+            //     std::unique_lock<std::mutex> lock(act_mutex_);
+            //     publish_action();
+            // }
 
         } catch (const std::runtime_error& e) {
             // Safety violation → callback already called ForceTransition.
